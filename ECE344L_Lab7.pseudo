@@ -1,0 +1,27 @@
+function main do
+	device initializations
+	while true do
+		Reset looping variabes to 0
+		// Calculate potentiometer
+		Read the value of the potentiometer
+		Adjust potentiometer value to range of voltage
+		button_state = adjusted potentiometer value
+		for i in button_state do
+			set LED_state = LED_state + BIT_i
+		end
+
+		// Calculate temperature
+		read temperature
+		convert temperature to Fahrenheit
+
+		// Writing to LCD and handling overheating
+		if temperature > 80 do
+			Flash "OVERHEATED!"
+			Turn all LEDs off
+		end else do
+			Display the temperature
+		end
+
+		// Output to LEDs
+		write LED_state to LED module
+end

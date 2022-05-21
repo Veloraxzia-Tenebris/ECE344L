@@ -1,0 +1,42 @@
+function main do
+	device initializations
+	while true do
+		read temperature
+		convert temperature to Fahrenheit
+
+		// LED module
+		set button_state = 0
+		set LED_state = 0
+		read button presses
+		if button 1 pressed do
+			set button_state = button_state + 1
+		end
+		if button 2 pressed do
+			set button_state = button_state + 2
+		end
+		if button 4 pressed do
+			set button_state = button_state + 4
+		end
+		for i in button_state do
+			set LED_state = LED_state + BIT_i
+		end
+
+		// LCD
+		set LCD_output = "POWER LEVEL: " + LED_state
+
+		// Terminal
+		set terminal_output = temperature
+
+		// Overheating
+		if temperature >= 80 do
+			set LED_state = 0
+			set LCD_output = "Overheated!"
+			set terminal_output = "Overheated!" + LF + CR
+		end
+
+		// Output everything
+		write LED_state to LED_port
+		write LCD_output to LCD_port
+		write terminal_output to terminal_port
+	end
+end
